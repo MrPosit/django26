@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{{ form.media }}
+
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <textarea id="bbcode_content" name="bbcode_content" style="display:none;"></textarea>
+    {{ form }}
+    <button type="submit">Create</button>
+</form>
+
+<script>
+    document.querySelector('form').addEventListener('submit', function() {
+        var bbcodeContent = convertToBBCode(document.querySelector('.django_ckeditor_5').innerHTML);
+        document.getElementById('bbcode_content').value = bbcodeContent;
+    });
+
+    function convertToBBCode(html) {
+        return html;
+    }
+</script>
+
+{% endblock %}
